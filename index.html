@@ -1,0 +1,176 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.page{padding:2rem 2rem 2.5rem;font-family:var(--font-sans)}
+.kicker{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:.4rem}
+.title{font-size:22px;font-weight:500;color:var(--color-text-primary);line-height:1.2;margin-bottom:.4rem}
+.subtitle{font-size:13px;color:var(--color-text-secondary);line-height:1.5}
+.source-link{display:inline-flex;align-items:center;gap:5px;margin-top:.75rem;font-size:12px;color:var(--color-text-info);text-decoration:none;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:5px 10px}
+.source-link:hover{background:var(--color-background-secondary)}
+.eq-band{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.9rem 1.25rem;margin-bottom:.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.eq-label{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.07em;white-space:nowrap;min-width:60px}
+.eq-text{font-size:14px;font-weight:500;color:var(--color-text-primary);font-family:var(--font-mono);flex:1;min-width:0}
+.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-bottom:1.5rem;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+.pipe-step{padding:.8rem .65rem;border-right:0.5px solid var(--color-border-tertiary)}
+.pipe-step:last-child{border-right:none}
+.pipe-tag{font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:500;margin-bottom:.25rem}
+.pipe-v0{font-size:12px;font-family:var(--font-mono);margin-bottom:.2rem;opacity:.6}
+.pipe-formula{font-size:13px;font-weight:500;font-family:var(--font-mono);margin-bottom:.2rem;line-height:1.3}
+.pipe-concept{font-size:11px;font-style:italic;margin-bottom:.2rem}
+.pipe-desc{font-size:11px;line-height:1.4}
+.s1{background:#EEEDFE}.s1 .pipe-tag{color:#3C3489}.s1 .pipe-formula{color:#26215C}.s1 .pipe-v0{color:#534AB7}.s1 .pipe-concept{color:#534AB7}.s1 .pipe-desc{color:#3C3489}
+.s2{background:#E6F1FB}.s2 .pipe-tag{color:#185FA5}.s2 .pipe-formula{color:#042C53}.s2 .pipe-v0{color:#378ADD}.s2 .pipe-concept{color:#185FA5}.s2 .pipe-desc{color:#0C447C}
+.s3{background:#E1F5EE}.s3 .pipe-tag{color:#0F6E56}.s3 .pipe-formula{color:#04342C}.s3 .pipe-v0{color:#1D9E75}.s3 .pipe-concept{color:#0F6E56}.s3 .pipe-desc{color:#085041}
+.s4{background:#FAECE7}.s4 .pipe-tag{color:#993C1D}.s4 .pipe-formula{color:#4A1B0C}.s4 .pipe-v0{color:#D85A30}.s4 .pipe-concept{color:#993C1D}.s4 .pipe-desc{color:#712B13}
+.s5{background:#EEEDFE}.s5 .pipe-tag{color:#534AB7}.s5 .pipe-formula{color:#26215C}.s5 .pipe-v0{color:#7F77DD}.s5 .pipe-concept{color:#534AB7}.s5 .pipe-desc{color:#3C3489}
+@media(prefers-color-scheme:dark){
+.s1{background:#3C3489}.s1 .pipe-tag{color:#CECBF6}.s1 .pipe-formula{color:#EEEDFE}.s1 .pipe-v0{color:#AFA9EC}.s1 .pipe-concept{color:#CECBF6}.s1 .pipe-desc{color:#CECBF6}
+.s2{background:#0C447C}.s2 .pipe-tag{color:#B5D4F4}.s2 .pipe-formula{color:#E6F1FB}.s2 .pipe-v0{color:#85B7EB}.s2 .pipe-concept{color:#B5D4F4}.s2 .pipe-desc{color:#B5D4F4}
+.s3{background:#085041}.s3 .pipe-tag{color:#9FE1CB}.s3 .pipe-formula{color:#E1F5EE}.s3 .pipe-v0{color:#5DCAA5}.s3 .pipe-concept{color:#9FE1CB}.s3 .pipe-desc{color:#9FE1CB}
+.s4{background:#712B13}.s4 .pipe-tag{color:#F5C4B3}.s4 .pipe-formula{color:#FAECE7}.s4 .pipe-v0{color:#F0997B}.s4 .pipe-concept{color:#F5C4B3}.s4 .pipe-desc{color:#F5C4B3}
+.s5{background:#3C3489}.s5 .pipe-tag{color:#CECBF6}.s5 .pipe-formula{color:#EEEDFE}.s5 .pipe-v0{color:#AFA9EC}.s5 .pipe-concept{color:#CECBF6}.s5 .pipe-desc{color:#CECBF6}
+}
+.perspectives{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem}
+.persp-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.875rem 1rem}
+.persp-source{display:flex;align-items:center;gap:8px;margin-bottom:.625rem}
+.persp-badge{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px}
+.badge-xai{background:#EEEDFE;color:#3C3489}
+.badge-google{background:#E1F5EE;color:#0F6E56}
+.badge-openai{background:#FAECE7;color:#993C1D}
+.badge-anthropic{background:#E6F1FB;color:#185FA5}
+@media(prefers-color-scheme:dark){
+.badge-xai{background:#3C3489;color:#CECBF6}
+.badge-google{background:#085041;color:#9FE1CB}
+.badge-openai{background:#712B13;color:#F5C4B3}
+.badge-anthropic{background:#0C447C;color:#B5D4F4}
+}
+.persp-label{font-size:11px;color:var(--color-text-tertiary)}
+.persp-heading{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:.4rem;line-height:1.3}
+.persp-body{font-size:12px;color:var(--color-text-secondary);line-height:1.55}
+.component-table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;font-size:12px}
+.component-table th{text-align:left;font-weight:500;font-size:11px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.06em;padding:6px 10px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.component-table td{padding:7px 10px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);vertical-align:top}
+.component-table td:first-child{font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);white-space:nowrap}
+.component-table td:nth-child(2){font-weight:500;font-size:12px}
+.component-table td:nth-child(3){color:var(--color-text-secondary);font-size:11px}
+.component-table td:nth-child(4){color:var(--color-text-tertiary);font-size:11px;font-family:var(--font-mono)}
+.component-table tr:last-child td{border-bottom:none}
+.section-head{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-tertiary);margin-bottom:.75rem}
+.footer-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;padding-top:1rem;border-top:0.5px solid var(--color-border-tertiary);font-size:11px;color:var(--color-text-tertiary)}
+.footer-row a{color:var(--color-text-info);text-decoration:none}
+.v0-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:.5rem;opacity:.75}
+.v0-cell{padding:.5rem .65rem;border-right:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary)}
+.v0-cell:last-child{border-right:none}
+.v0-tag{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-tertiary);margin-bottom:.15rem}
+.v0-f{font-size:12px;font-family:var(--font-mono);color:var(--color-text-secondary);font-weight:500}
+.v0-c{font-size:11px;color:var(--color-text-tertiary);font-style:italic}
+.arrow-bridge{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-bottom:.5rem;text-align:center}
+.ab-cell{font-size:13px;color:var(--color-text-tertiary);padding:.1rem 0}
+</style>
+<div class="page">
+  <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Ukubona UXGOA roundtable brief with genealogy: v0 roots, v4 upgrade, four AI perspectives, and component alignment</h2>
+  <div class="kicker">UXGOA Roundtable · Ukubona</div>
+  <div class="title">Ukubona: the learning operator</div>
+  <div class="subtitle">Genealogy + comparative reading across four AI perspectives</div>
+  <a class="source-link" href="https://ukb-pyro.github.io/repos-01/assets/html/clinical-tmves.html" target="_blank">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    clinical-tmves.html
+  </a>
+
+  <div style="margin-top:1.5rem;margin-bottom:.3rem" class="section-head">Roots · v0 canonical gradient descent</div>
+  <div class="v0-strip">
+    <div class="v0-cell"><div class="v0-tag">I · anatomy</div><div class="v0-f">θ</div><div class="v0-c">parameter state</div></div>
+    <div class="v0-cell"><div class="v0-tag">II · pathology</div><div class="v0-f">L_ijk</div><div class="v0-c">loss tensor</div></div>
+    <div class="v0-cell"><div class="v0-tag">III · gradient</div><div class="v0-f">∇L</div><div class="v0-c">direction of error</div></div>
+    <div class="v0-cell"><div class="v0-tag">IV · descent</div><div class="v0-f">−η∇L</div><div class="v0-c">scaled step</div></div>
+    <div class="v0-cell"><div class="v0-tag">V · update ↺</div><div class="v0-f">θ′ ↺ ∇L</div><div class="v0-c">new state, looped</div></div>
+  </div>
+
+  <div class="arrow-bridge">
+    <div class="ab-cell">↓</div><div class="ab-cell">↓</div><div class="ab-cell">↓</div><div class="ab-cell">↓</div><div class="ab-cell">↓</div>
+  </div>
+
+  <div class="section-head" style="margin-bottom:.4rem">Upgrade · v4 pipeline</div>
+  <div class="pipeline">
+    <div class="pipe-step s1">
+      <div class="pipe-tag">I · temporal</div>
+      <div class="pipe-v0">θ → θᵗ</div>
+      <div class="pipe-formula">θᵗ</div>
+      <div class="pipe-concept">Temporal twin</div>
+      <div class="pipe-desc">Static state gains a timestamp — part of a trajectory, not a snapshot</div>
+    </div>
+    <div class="pipe-step s2">
+      <div class="pipe-tag">II · composite</div>
+      <div class="pipe-v0">L_ijk → L₀+Σwᵢ·Lᵢ</div>
+      <div class="pipe-formula">L₀+Σwᵢ·Lᵢ</div>
+      <div class="pipe-concept">Weighted multi-loss</div>
+      <div class="pipe-desc">Scalar loss becomes a weighted bundle of objectives</div>
+    </div>
+    <div class="pipe-step s3">
+      <div class="pipe-tag">III · modulated</div>
+      <div class="pipe-v0">∇L → f(σ²,λ,ε)</div>
+      <div class="pipe-formula">f(σ²,λ,ε)</div>
+      <div class="pipe-concept">Ex-ante policy</div>
+      <div class="pipe-desc">Gradient shaped by uncertainty, regularization, noise — before acting</div>
+    </div>
+    <div class="pipe-step s4">
+      <div class="pipe-tag">IV · federated</div>
+      <div class="pipe-v0">−η∇L → γ|ε_FGT|²</div>
+      <div class="pipe-formula">γ|ε_FGT|²</div>
+      <div class="pipe-concept">Ex-post ground truth</div>
+      <div class="pipe-desc">Immediate step becomes delayed federated correction — learning-time, not decision-time</div>
+    </div>
+    <div class="pipe-step s5">
+      <div class="pipe-tag">V · prognosis</div>
+      <div class="pipe-v0">θ′ ↺ → L(θᵗ⁺¹)</div>
+      <div class="pipe-formula">L(θᵗ⁺¹)</div>
+      <div class="pipe-concept">Loop as landscape</div>
+      <div class="pipe-desc">Update projects into the next loss landscape — loop made explicit</div>
+    </div>
+  </div>
+
+  <div class="section-head">Four perspectives</div>
+  <div class="perspectives">
+    <div class="persp-card">
+      <div class="persp-source"><span class="persp-badge badge-xai">xAI</span><span class="persp-label">Optimization view</span></div>
+      <div class="persp-heading">Iterative optimization / training update rule</div>
+      <div class="persp-body">Multi-task loss with adaptive geometry shaping. f(σ²,λ,ε) reshapes the loss landscape before acting — closer to Bayesian learning or robust optimization than standard SGD. γ|ε_FGT|² penalizes error energy in a structured domain (frequency, graph, latent manifold).</div>
+    </div>
+    <div class="persp-card">
+      <div class="persp-source"><span class="persp-badge badge-google">Google</span><span class="persp-label">Ecosystem / UX view</span></div>
+      <div class="persp-heading">Landscape → behavior → SGD → ecosystem evolution</div>
+      <div class="persp-body">θᵗ is the digital environment state. σ² encodes unpredictability of user interaction; λ prevents overreaction to anomalies; ε is the residual delta between expected and recorded behavior. γ|ε_FGT|² is the directed force — squaring the error penalizes meaningful friction while smoothing noise.</div>
+    </div>
+    <div class="persp-card">
+      <div class="persp-source"><span class="persp-badge badge-openai">OpenAI</span><span class="persp-label">Continual learning view</span></div>
+      <div class="persp-heading">Composite loss + forgetting regularizer</div>
+      <div class="persp-body">A continual learning setup designed to resist catastrophic forgetting. γ|ε_FGT|² penalizes deviation from a prior state (EWC-style anchor). f(σ²,λ,ε) handles the regularization landscape. Full loss: [L₀+Σwᵢ·Lᵢ] + f(σ²,λ,ε) + γ|ε_FGT|².</div>
+    </div>
+    <div class="persp-card">
+      <div class="persp-source"><span class="persp-badge badge-anthropic">Anthropic</span><span class="persp-label">Learning operator view</span></div>
+      <div class="persp-heading">Not gradient descent — a learning operator 𝒯</div>
+      <div class="persp-body">State → multi-loss aggregation → geometry shaping → spectral constraint → next state. Multi-objective, uncertainty-aware, adversarially robust, spectrally regularized. The pipeline defines θᵗ⁺¹ implicitly via loss transformation — an evolution operator 𝒯: θᵗ → θᵗ⁺¹.</div>
+    </div>
+  </div>
+
+  <div class="section-head">Component alignment</div>
+  <table class="component-table">
+    <thead><tr><th>v4 symbol</th><th>Role</th><th>Interpretations</th><th>v0 root</th></tr></thead>
+    <tbody>
+      <tr><td>θᵗ</td><td>Current state</td><td>Model weights / world model / digital environment at time t</td><td>θ</td></tr>
+      <tr><td>L₀+Σwᵢ·Lᵢ</td><td>Composite loss</td><td>Multi-task objectives; L₀ = primary task or physics residual; Lᵢ = auxiliary</td><td>L_ijk</td></tr>
+      <tr><td>σ²</td><td>Variance</td><td>Gradient variance / user interaction noise / uncertainty scale</td><td>∇L (shape)</td></tr>
+      <tr><td>λ</td><td>Regularization</td><td>L1/L2 weight decay / structural constraint</td><td>∇L (scale)</td></tr>
+      <tr><td>ε</td><td>Perturbation</td><td>Adversarial signal / stochasticity / measurement error</td><td>∇L (noise)</td></tr>
+      <tr><td>γ</td><td>Penalty weight</td><td>Lagrange multiplier / trust parameter / learning-rate-like scaling</td><td>η</td></tr>
+      <tr><td>ε_FGT</td><td>Error residual</td><td>Forgetting drift from prior; Fast/Filtered Gradient Term; Fourier-Galerkin residual</td><td>−∇L</td></tr>
+      <tr><td>L(θᵗ⁺¹)</td><td>Updated loss</td><td>Next-state effective loss / evolved ecosystem / implicit parameter update</td><td>θ′ ↺</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer-row">
+    <span>Ukubona · UXGOA Roundtable Brief · v4</span>
+    <a href="https://ukb-pyro.github.io/repos-01/assets/html/clinical-tmves.html" target="_blank">clinical-tmves.html ↗</a>
+    <span>May 2026</span>
+  </div>
+</div>
