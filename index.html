@@ -1,4 +1,5 @@
 
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -9,8 +10,25 @@
 --r:8px;--r2:4px;
 --mono:'IBM Plex Mono',monospace;
 --serif:'Cormorant Garamond',Georgia,serif;
+--content-width:1200px;
 }
-html,body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-weight:300;padding:2rem}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-weight:300;
+
+  max-width:1200px;
+  margin:0 auto;
+  padding:2rem;
+  max-width:var(--content-width);
+}
+.title{
+  max-width:700px;
+}
+.subtitle{
+  max-width:700px;
+}
 .tmves-bar{height:2px;background:linear-gradient(90deg,var(--T),var(--M),var(--V),var(--E),var(--S));border-radius:1px;margin-bottom:1.75rem}
 .kicker{font-family:var(--mono);font-size:0.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:.4rem}
 .kicker em{color:var(--M);font-style:normal}
@@ -18,7 +36,7 @@ html,body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-we
 .subtitle{font-family:var(--mono);font-size:0.62rem;color:var(--ink3);letter-spacing:.05em}
 .source-link{display:inline-flex;align-items:center;gap:5px;margin-top:.75rem;font-family:var(--mono);font-size:0.6rem;color:var(--T);text-decoration:none;border:0.5px solid rgba(111,174,232,0.25);border-radius:var(--r2);padding:4px 10px}
 .source-link:hover{background:rgba(111,174,232,0.08)}
-.section-lbl{font-family:var(--mono);font-size:0.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:1.75rem;margin-bottom:.65rem}
+.section-lbl{font-family:var(--mono);font-size:0.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:3rem;margin-bottom:1rem}
 .v0-strip{display:grid;grid-template-columns:repeat(5,1fr);border:0.5px solid var(--brd);border-radius:var(--r2);overflow:hidden;margin-bottom:.4rem}
 .v0-cell{padding:.55rem .65rem;border-right:0.5px solid var(--brd);background:var(--bg2)}
 .v0-cell:last-child{border-right:none}
@@ -28,7 +46,29 @@ html,body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-we
 .arrow-bridge{display:grid;grid-template-columns:repeat(5,1fr);text-align:center;padding:.3rem 0;margin-bottom:.4rem}
 .ab-cell{font-family:var(--mono);font-size:0.7rem;color:var(--ink3);opacity:.45}
 .pipeline{display:grid;grid-template-columns:repeat(5,1fr);border:0.5px solid var(--brd2);border-radius:var(--r2);overflow:hidden;margin-bottom:1.75rem}
-.pipe-step{padding:.8rem .65rem;border-right:0.5px solid var(--brd)}
+@media (max-width:900px){
+
+  .pipeline{
+    grid-template-columns:1fr;
+  }
+
+  .v0-strip{
+    grid-template-columns:1fr;
+  }
+
+  .arrow-bridge{
+    display:none;
+  }
+
+}
+@media (max-width:900px){
+
+  .perspectives{
+    grid-template-columns:1fr;
+  }
+
+}
+.pipe-step{padding:1rem;border-right:0.5px solid var(--brd)}
 .pipe-step:last-child{border-right:none}
 .pipe-tag{font-family:var(--mono);font-size:0.5rem;text-transform:uppercase;letter-spacing:.08em;font-weight:500;margin-bottom:.2rem}
 .pipe-v0{font-family:var(--mono);font-size:0.55rem;margin-bottom:.2rem;opacity:.4}
@@ -53,7 +93,14 @@ html,body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-we
 .persp-body{font-family:var(--mono);font-size:0.6rem;color:var(--ink2);line-height:1.65}
 table{width:100%;border-collapse:collapse;margin-bottom:1.75rem}
 th{font-family:var(--mono);font-size:0.55rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);text-align:left;padding:7px 10px;border-bottom:0.5px solid var(--brd2)}
-td{padding:7px 10px;border-bottom:0.5px solid var(--brd);vertical-align:top}
+td{padding:10px 12px;border-bottom:0.5px solid var(--brd);vertical-align:top}
+th{
+  padding:10px 12px;
+}
+.pipe-formula,
+.v0-f{
+  overflow-wrap:anywhere;
+}
 td:first-child{font-family:var(--mono);font-size:0.65rem;color:var(--E)}
 td:nth-child(2){font-size:0.75rem;color:var(--ink)}
 td:nth-child(3){font-family:var(--mono);font-size:0.6rem;color:var(--ink3);line-height:1.5}
@@ -61,6 +108,9 @@ td:nth-child(4){font-family:var(--mono);font-size:0.62rem;color:var(--V)}
 tr:last-child td{border-bottom:none}
 .footer-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;padding-top:1.25rem;border-top:0.5px solid var(--brd);font-family:var(--mono);font-size:0.57rem;color:var(--ink3)}
 .footer-row a{color:var(--T);text-decoration:none}
+.footer-row{
+  margin-top:3rem;
+}
 </style>
 
 <div class="tmves-bar"></div>
